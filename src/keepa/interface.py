@@ -165,8 +165,7 @@ def _parse_seller(seller_raw_response, to_datetime):
     for seller in sellers:
 
         def convert_time_data(key):
-            date_val = seller.get(key, None)
-            if date_val is not None:
+            if (date_val := seller.get(key, None)) is not None:
                 return (key, keepa_minutes_to_time([date_val], to_datetime)[0])
             else:
                 return None
@@ -792,8 +791,7 @@ class Keepa:
         if not len(items):
             raise ValueError("No valid product codes")
 
-        nitems = len(items)
-        if nitems == 1:
+        if (nitems := len(items)) == 1:
             log.debug("Executing single product query")
         else:
             log.debug("Executing %d item product query", nitems)
@@ -2574,8 +2572,7 @@ class Keepa:
                 payload,
                 timeout=self._timeout,
             )
-            status_code = str(raw.status_code)
-            if status_code != "200":
+            if (status_code := str(raw.status_code)) != "200":
                 if status_code in SCODES:
                     if status_code == "429" and wait:
                         print("Response from server: %s" % SCODES[status_code])
@@ -2744,8 +2741,7 @@ class AsyncKeepa:
             raise Exception("Invalid product codes input")
         assert len(items), "No valid product codes"
 
-        nitems = len(items)
-        if nitems == 1:
+        if (nitems := len(items)) == 1:
             log.debug("Executing single product query")
         else:
             log.debug("Executing %d item product query", nitems)
@@ -3023,8 +3019,7 @@ class AsyncKeepa:
                     params=payload,
                     timeout=self._timeout,
                 ) as raw:
-                    status_code = str(raw.status)
-                    if status_code != "200":
+                    if (status_code := str(raw.status)) != "200":
                         if status_code in SCODES:
                             if status_code == "429" and wait:
                                 await self.wait_for_tokens()
