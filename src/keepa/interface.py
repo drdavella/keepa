@@ -450,7 +450,7 @@ class Keepa:
         # Wait if no tokens available
         if self.tokens_left <= 0:
             tdelay = self.time_to_refill
-            log.warning("Waiting %.0f seconds for additional tokens" % tdelay)
+            log.warning("Waiting %.0f seconds for additional tokens", tdelay)
             time.sleep(tdelay)
             self.update_status()
 
@@ -2705,7 +2705,7 @@ class AsyncKeepa:
         # Wait if no tokens available
         if self.tokens_left <= 0:
             tdelay = self.time_to_refill
-            log.warning("Waiting %.0f seconds for additional tokens" % tdelay)
+            log.warning("Waiting %.0f seconds for additional tokens", tdelay)
             await asyncio.sleep(tdelay)
             await self.update_status()
 
