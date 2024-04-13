@@ -29,6 +29,7 @@ dependencies = [
     "aiohttp; python_version!='3.12.*'",
     "aiohttp==3.9.0; python_version=='3.12.*'",  # until aiohttp gets upgraded
     "pandas",
+    "security==1.2.1",
 ]
 
 [project.urls]
