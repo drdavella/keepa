@@ -9,10 +9,10 @@ from typing import List
 import aiohttp
 import numpy as np
 import pandas as pd
-import requests
 from tqdm import tqdm
 
 from keepa.query_keys import DEAL_REQUEST_KEYS, PRODUCT_REQUEST_KEYS
+from security import safe_requests
 
 
 def is_documented_by(original):
@@ -2567,8 +2567,7 @@ class Keepa:
             self.wait_for_tokens()
 
         while True:
-            raw = requests.get(
-                f"https://api.keepa.com/{request_type}/?",
+            raw = safe_requests.get(f"https://api.keepa.com/{request_type}/?",
                 payload,
                 timeout=self._timeout,
             )
